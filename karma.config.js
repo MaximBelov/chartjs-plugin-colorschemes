@@ -13,7 +13,7 @@ module.exports = function(karma) {
 	}
 
 	karma.set({
-		browsers: ['firefox'],
+		browsers: ['Chrome'],
 		frameworks: ['jasmine'],
 		reporters: ['spec', 'kjhtml'],
 		logLevel: karma.LOG_WARN,
@@ -21,7 +21,7 @@ module.exports = function(karma) {
 		files: [
 			{pattern: 'test/fixtures/**/*.js', included: false},
 			{pattern: 'test/fixtures/**/*.png', included: false},
-			'node_modules/chart.js/dist/Chart.js',
+			'node_modules/chart.js/dist/chart.umd.js',
 			'test/index.js',
 			'src/index.js'
 		].concat(args.inputs),
@@ -30,12 +30,12 @@ module.exports = function(karma) {
 		// diff more stable when ran on Travis and dev machine.
 		// https://github.com/chartjs/Chart.js/pull/5629
 		customLaunchers: {
-			firefox: {
-				base: 'Firefox',
-				prefs: {
-					'layers.acceleration.disabled': true
-				}
-			}
+			chrome: {
+				base: 'Chrome',
+				flags: [
+					'--disable-accelerated-2d-canvas'
+				],
+			},
 		},
 
 		preprocessors: {
@@ -85,7 +85,8 @@ module.exports = function(karma) {
 			dir: 'coverage/',
 			reporters: [
 				{type: 'html', subdir: 'html'},
-				{type: 'lcovonly', subdir: '.'}
+				{type: 'lcovonly', subdir: '.'},
+				{type: 'cobertura', subdir: '.'}
 			]
 		};
 		[

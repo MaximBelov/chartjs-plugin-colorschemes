@@ -12,7 +12,7 @@ export default {
 			}]
 		},
 		options: {
-			legend: false,
+			fill: true,
 			title: false,
 			layout: {
 				padding: 4

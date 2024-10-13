@@ -14,7 +14,21 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - run: npm i
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+      - name: Install dependencies
+        run: npm i
+      - name: Run headless test
+        uses: coactions/setup-xvfb@v1
+        with:
+          run: gulp test --coverage
+      - name: Produce the coverage report
+        uses: insightsengineering/coverage-action@v2
+        with:
+          path: ./coverage/cobertura-coverage.xml
+          threshold: 80.123
+          fail: true
       - name: Lint
         run: gulp lint
       - name: Bower

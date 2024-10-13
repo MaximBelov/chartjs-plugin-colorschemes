@@ -1,6 +1,6 @@
 export default {
 	config: {
-		type: 'horizontalBar',
+		type: 'bar',
 		data: {
 			labels: [0, 1, 2, 3, 4, 5],
 			datasets: [{
@@ -12,7 +12,7 @@ export default {
 			}]
 		},
 		options: {
-			legend: false,
+			indexAxis: 'y',
 			title: false,
 			layout: {
 				padding: 4

@@ -12,7 +12,6 @@ export default {
 			}]
 		},
 		options: {
-			legend: false,
 			title: false,
 			plugins: {
 				colorschemes: {

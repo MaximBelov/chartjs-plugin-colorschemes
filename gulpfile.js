@@ -41,7 +41,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('test', function(done) {
-	new karma.Server({
+	const cliOptions = {
 		configFile: path.join(__dirname, 'karma.config.js'),
 		singleRun: !argv.watch,
 		args: {
@@ -49,12 +49,13 @@ gulp.task('test', function(done) {
 			inputs: (argv.inputs || 'test/specs/**/*.js').split(';'),
 			watch: argv.watch
 		}
-	},
-	function(error) {
-		// https://github.com/karma-runner/gulp-karma/issues/18
-		error = error ? new Error('Karma returned with the error code: ' + error) : undefined;
-		done(error);
-	}).start();
+	};
+	new karma.Server(karma.config.parseConfig(path.join(__dirname, 'karma.config.js'), cliOptions, {throwErrors: true, promiseConfig: false}),
+		(error) => {
+			// https://github.com/karma-runner/gulp-karma/issues/18
+			error = error ? new Error('Karma returned with the error code: ' + error) : undefined;
+			done(error);
+		}).start();
 });
 
 gulp.task('lint', function() {

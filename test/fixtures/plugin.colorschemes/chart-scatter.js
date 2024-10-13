@@ -32,7 +32,6 @@ export default {
 			}]
 		},
 		options: {
-			legend: false,
 			title: false,
 			layout: {
 				padding: 4

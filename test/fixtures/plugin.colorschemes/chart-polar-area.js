@@ -8,7 +8,6 @@ export default {
 			}]
 		},
 		options: {
-			legend: false,
 			title: false,
 			scale: {
 				display: false

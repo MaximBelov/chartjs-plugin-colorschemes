@@ -5,7 +5,7 @@ import {Chart} from 'chart.js';
 var EXPANDO_KEY = '$colorschemes';
 
 
-const pluginBase = Chart.defaults.global || Chart.defaults;
+const pluginBase = Chart.defaults;
 pluginBase.plugins.colorschemes = {
 	scheme: 'brewer.Paired12',
 	fillAlpha: 0.5,
